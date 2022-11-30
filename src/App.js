@@ -1,34 +1,38 @@
 import {BrowserRouter, Route, Switch} from "react-router-dom";
-
+import {Provider} from "react-redux"
 import Header from "./components/Header";
 import Foodd from "./components/Foodd";
 import FoodType from "./components/FoodType";
-
-i
+import Aboutt from "./components/Aboutt";
+import Foddy from "./components/Foddy";
+import {store} from "./components/store";
 
 function App() {
 
     return (
-        <BrowserRouter basename="/">
-            <Header/>
-            <Switch>
-                <Route exact path="/">
-                    <h1>Мы накормим всех!</h1>
-                    <h2>Любимая еда из любимого Вуза</h2>
-                    <Foodd/>
-                </Route>
+        <Provider store={store}>
+            <BrowserRouter basename="/">
+                <Header/>
+                <Switch>
+                    <Route exact path="/">
+                        <h1>Мы накормим всех!</h1>
+                        <h2>Любимая еда из любимого Вуза</h2>
+                        <Foodd/>
+                    </Route>
 
-                <Route path={'/food_type'}>
-                    <FoodType/>
-                </Route>
+                    <Route exact path="/about">
+                        <Aboutt/>
+                    </Route>
 
+                    <Route exact path="/food/:food_pk">
+                        <Foddy/>
+                    </Route>
 
-                <Route path="/меню">
-                    <h1>Закажи доставку!</h1>
-                </Route>
+                </Switch>
+            </BrowserRouter>
+        </Provider>
 
-            </Switch>
-        </BrowserRouter>
     );
 }
 export default App;
+
